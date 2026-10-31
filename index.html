@@ -1,0 +1,221 @@
+<!doctype html>
+<!--
+  COMMENT MODIFIER CE SITE (tout se passe dans la partie <script>, tout en bas) :
+  - Ajouter une vidéo : ajoute une ligne dans la liste VIDEOS (id YouTube, titre, catégorie).
+  - Supprimer une vidéo : efface sa ligne.
+  - Changer la vidéo à la une : change FEATURED (elle s'affiche en premier, tout en haut).
+  - Mettre ton numéro WhatsApp : change WHATSAPP (chiffres seulement, avec l'indicatif, sans le +).
+  - Les prix : cherche « … / mois » dans la page et remplace les points par ton prix (ou laisse-les).
+  L'id YouTube est la partie après "youtu.be/" et avant le "?".
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond Event – Vidéo, réseaux et publicité à Kinshasa</title>
+<meta name="description" content="Agence de communication digitale à Kinshasa : vidéo, gestion de pages et campagnes publicitaires.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎬%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121212;--card:#1E1C1A;--line:#3A3631;--text:#F5F1EA;--mute:#B9B1A6;--amber:#F2A541;color-scheme:dark}
+*{box-sizing:border-box;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+*::-webkit-scrollbar{width:6px;height:6px}
+*::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;line-height:1.5}
+h1,h2,h3,p{margin:0}
+a{color:var(--amber)}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:56px 0}
+h2{font-size:clamp(28px,4vw,36px);font-weight:800;margin-bottom:32px}
+.btn{display:inline-block;padding:16px 28px;border-radius:999px;font-weight:700;text-decoration:none;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.main{background:var(--amber);color:#121212}
+.ghost{border:1px solid #5A544B;color:var(--text);font-weight:600}
+.dark{background:#121212;color:var(--text)}
+header .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding-top:24px;padding-bottom:24px}
+.logo{font-weight:800;font-size:20px;letter-spacing:.04em}
+nav{display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+nav a{color:var(--mute);text-decoration:none}
+nav a.btn{color:#121212;padding:12px 20px}
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;align-items:center;padding-top:32px}
+.hero-text{display:flex;flex-direction:column;gap:24px;animation:up .8s ease both}
+.kicker{color:var(--amber);font-weight:600;letter-spacing:.08em;font-size:14px}
+h1{font-size:clamp(36px,6vw,56px);line-height:1.08;font-weight:800}
+.lead{font-size:18px;color:var(--mute)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.grid.four{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-6px);border-color:var(--amber)}
+.card h3{font-size:22px}
+.card p,.card li{color:var(--mute);line-height:1.6}
+.card ul{margin:0;padding-left:20px;line-height:1.8}
+.num,.price{color:var(--amber);font-weight:800}
+.price{font-size:24px;margin-top:auto}
+.band{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;margin-top:24px}
+.band div{max-width:680px;display:flex;flex-direction:column;gap:8px}
+.strip{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.item{flex:0 0 min(300px,80%);scroll-snap-align:start}
+.hint{margin:-16px 0 24px;color:var(--mute)}
+.vid{position:relative;display:block;width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:16px;overflow:hidden;padding:0;background:var(--card);cursor:pointer}
+.vid img,.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.play{position:absolute;inset:0;margin:auto;width:56px;height:56px}
+.hero .play{animation:pulse 2s ease-in-out infinite}
+.cap{margin-top:10px;color:var(--mute);font-size:14px}
+.cap b{color:var(--text);font-weight:600}
+.about p{color:var(--mute);line-height:1.7;max-width:680px;margin-bottom:16px}
+.contact{background:var(--amber);color:#121212;border-radius:24px;padding:56px 40px;display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.contact h2{margin:0}
+footer{padding:32px 0 56px;color:var(--mute);font-size:14px}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<span class="logo">Beyond Event</span>
+<nav>
+<a href="#services">Services</a><a href="#realisations">Réalisations</a><a href="#offres">Offres</a>
+<a class="btn main" data-wa="contact" href="#contact">Écrire sur WhatsApp</a>
+</nav>
+</div></header>
+
+<main>
+<section><div class="wrap hero">
+<div class="hero-text">
+<span class="kicker">VIDÉO · RÉSEAUX · PUBLICITÉ · KINSHASA</span>
+<h1>Des vidéos et des réseaux qui font parler de vous.</h1>
+<p class="lead">On filme vos événements, on monte vos vidéos, on gère vos pages et on lance vos campagnes publicitaires à Kinshasa.</p>
+<div class="actions">
+<a class="btn main" data-wa="diagnostic" href="#contact">Demander un diagnostic</a>
+<a class="btn ghost" href="#realisations">Voir les réalisations</a>
+</div>
+</div>
+<div><div id="featured"></div><p class="cap" id="featured-cap"></p></div>
+</div></section>
+
+<section id="services"><div class="wrap">
+<h2>Ce qu’on fait pour vous</h2>
+<div class="grid four">
+<div class="card"><span class="num">01</span><h3>Vidéos et montage</h3><p>Conférences, lancements, tournages et clips, filmés et montés pour vos réseaux.</p></div>
+<div class="card"><span class="num">02</span><h3>Gestion de pages et réseaux</h3><p>Planning de publications, réponses aux messages et rapport mensuel.</p></div>
+<div class="card"><span class="num">03</span><h3>Campagnes publicitaires</h3><p>Annonces ciblées sur les réseaux sociaux, suivies et optimisées pour vous apporter des clients.</p></div>
+<div class="card"><span class="num">04</span><h3>Photos et visuels</h3><p>Photos, affiches et visuels pour vos événements et vos promotions.</p></div>
+</div>
+</div></section>
+
+<section id="realisations"><div class="wrap">
+<h2>Réalisations</h2>
+<p class="hint">Faites défiler les vidéos →</p>
+<div class="strip" id="strip" role="region" aria-label="Nos réalisations" tabindex="0"></div>
+</div></section>
+
+<section><div class="wrap">
+<h2>Comment ça se passe</h2>
+<div class="grid">
+<div class="card"><span class="num">01</span><h3>On en parle</h3><p>Un échange sur WhatsApp ou en personne pour comprendre votre projet et vos objectifs.</p></div>
+<div class="card"><span class="num">02</span><h3>On crée</h3><p>On filme, on monte et on prépare vos publications selon un planning clair.</p></div>
+<div class="card"><span class="num">03</span><h3>On publie et on suit</h3><p>On publie, on répond à votre communauté et on vous envoie un rapport chaque mois.</p></div>
+</div>
+</div></section>
+
+<section id="offres"><div class="wrap">
+<h2>Nos offres</h2>
+<div class="grid">
+<div class="card"><h3>Essentiel</h3><ul><li>1 réseau social géré</li><li>8 publications par mois</li><li>2 vidéos courtes montées</li><li>Rapport mensuel</li></ul><strong class="price">… / mois</strong></div>
+<div class="card"><h3>Visibilité</h3><ul><li>2 réseaux sociaux gérés</li><li>12 publications par mois</li><li>4 vidéos courtes montées</li><li>Réponses aux messages</li><li>Rapport mensuel</li></ul><strong class="price">… / mois</strong></div>
+<div class="card"><h3>Complet</h3><ul><li>Gestion de vos pages</li><li>16 publications par mois</li><li>6 vidéos montées</li><li>Campagne publicitaire gérée (budget pub en plus)</li><li>Rapport et point mensuel</li></ul><strong class="price">… / mois</strong></div>
+</div>
+<div class="card band">
+<div><h3>Besoin d’un seul service ?</h3><p>Une campagne publicitaire, une vidéo, des affiches ou des photos : on peut aussi les faire à l’unité. Décrivez-nous votre besoin sur WhatsApp, on vous répond avec un devis adapté.</p></div>
+<a class="btn main" data-wa="devis" href="#contact">Demander un devis</a>
+</div>
+</div></section>
+
+<section class="about"><div class="wrap">
+<h2>Qui sommes-nous ?</h2>
+<p>Beyond Event est une agence de communication digitale basée à Kinshasa : vidéo, gestion de pages et campagnes publicitaires. Nous avons déjà filmé des conférences, des publicités et des émissions, et nous mettons cette expérience au service de votre activité.</p>
+<p>Fondée par Eric Bulembi, créateur de contenu vidéo : montage, étalonnage, clips et scénarios.</p>
+</div></section>
+
+<section id="contact"><div class="wrap">
+<div class="contact">
+<h2>Parlons de votre projet.</h2>
+<p>Dites-nous votre activité et votre objectif : on vous répond vite sur WhatsApp, avec un premier diagnostic de votre page.</p>
+<a class="btn dark" data-wa="diagnostic" href="#contact">Écrire sur WhatsApp</a>
+</div>
+</div></section>
+</main>
+
+<footer><div class="wrap">© Beyond Event · Kinshasa, RDC</div></footer>
+
+<script>
+// ===== À MODIFIER ICI =====
+const WHATSAPP = "243980661302"; // ton numéro : chiffres seulement, avec l’indicatif, sans le +
+const FEATURED = "QSqfAzwLDSg";  // la vidéo à la une (id YouTube) : elle apparaît toujours en premier
+const VIDEOS = [
+  {id:"QSqfAzwLDSg", titre:"Publicité pour une bière, tournée en restaurant", categorie:"Publicité"},
+  {id:"_VQHM1eEm5w", titre:"Captation d’une conférence", categorie:"Conférence"},
+  {id:"GM6pG94y7fU", titre:"Tournage d’un post publicitaire", categorie:"Tournage"},
+  {id:"80N8_hwori4", titre:"Tournage d’une émission à l’ISAU", categorie:"Émission"},
+  {id:"hfbf1Lq8Lao", titre:"Portrait : l’élégance en images", categorie:"Portrait"}
+];
+// ===== FIN DE LA PARTIE À MODIFIER =====
+
+const MSG = {
+  diagnostic: "Bonjour, je souhaite un diagnostic de ma page.\nMon activité : \nLien de ma page : \nMon objectif : ",
+  devis: "Bonjour, j’ai besoin d’un devis pour : ",
+  contact: "Bonjour, je vous écris depuis votre site. "
+};
+document.querySelectorAll("[data-wa]").forEach(a => {
+  if (/^\d+$/.test(WHATSAPP)) {
+    a.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(MSG[a.dataset.wa]);
+  }
+});
+
+const PLAY = '<svg class="play" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="rgba(18,18,18,.6)" stroke="#F2A541" stroke-width="2"/><path d="M26 20l20 12-20 12z" fill="#F2A541"/></svg>';
+
+function player(v) {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "vid";
+  b.setAttribute("aria-label", "Lire la vidéo : " + v.titre);
+  b.innerHTML = '<img loading="lazy" alt="" src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg">' + PLAY;
+  b.onclick = () => {
+    const d = document.createElement("div");
+    d.className = "vid";
+    d.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + v.id + '?autoplay=1&rel=0&playsinline=1" title="' + v.titre.replace(/"/g, "") + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    b.replaceWith(d);
+  };
+  return b;
+}
+
+function caption(v) {
+  const p = document.createElement("p");
+  p.className = "cap";
+  const b = document.createElement("b");
+  b.textContent = v.categorie;
+  p.append(b, " · " + v.titre);
+  return p;
+}
+
+const star = VIDEOS.find(v => v.id === FEATURED) || VIDEOS[0];
+document.getElementById("featured").append(player(star));
+document.getElementById("featured-cap").replaceWith(caption(star));
+
+const strip = document.getElementById("strip");
+VIDEOS.filter(v => v !== star).forEach(v => {
+  const item = document.createElement("div");
+  item.className = "item";
+  item.append(player(v), caption(v));
+  strip.append(item);
+});
+</script>
+</body>
+</html>

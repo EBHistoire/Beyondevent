@@ -1,0 +1,422 @@
+<!doctype html>
+<!--
+  COMMENT MODIFIER CE SITE (tout se passe dans la partie <script>, tout en bas) :
+  - IMGS : les listes d'images. Ajoute ou retire un nom de fichier (le fichier doit être dans le dépôt GitHub, à côté de index.html).
+  - VIDEOS : ajoute une ligne {id:"ID_YOUTUBE", t:"Titre"} ; pour une vidéo hébergée sur le site : fichier:"nom.mp4".
+  - WA : ton numéro WhatsApp. FORM_URL : le lien de ton Google Forms (quand il est prêt).
+  - CHECKLISTS : les checklists offertes (titre + nom du PDF).
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Beyond Event – Agence de marketing à Kinshasa</title>
+<meta name="description" content="Beyond Event, agence de marketing à Kinshasa : marketing, community management et production pour les marques, restaurants, entreprises et organisateurs d’événements.">
+<meta property="og:title" content="Beyond Event – Agence de marketing">
+<meta property="og:description" content="Votre marque mérite d’être vue.">
+<meta property="og:image" content="https://ebhistoire.github.io/Beyondevent/file_00000000eff881faa2d063eb0ef5ca77.png">
+<link rel="icon" href="file_00000000eff881faa2d063eb0ef5ca77.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A14;--bg2:#10101E;--line:#1F1F36;--tx:#E8E6FF;--mu:#9A96BC;--vi:#6B52FF;--li:#A796FF;color-scheme:dark;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px;background:var(--bg)}
+body{background:var(--bg);color:var(--tx);font:400 16px/1.6 Poppins,system-ui,sans-serif;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--li);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,20,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;text-decoration:none;font-weight:600;letter-spacing:.06em}
+.logo img{height:34px;width:auto}
+.burger{background:none;border:0;color:var(--tx);cursor:pointer;padding:10px;display:grid;gap:5px}
+.burger span{display:block;width:24px;height:2px;background:currentColor}
+.panel{display:none;background:var(--bg2);border-top:1px solid var(--line)}
+.panel.open{display:block}
+.panel a{display:block;padding:14px 20px;text-decoration:none;border-bottom:1px solid var(--line);color:#C9C5F0;max-width:1100px;margin:0 auto}
+.btn{display:inline-block;border:0;border-radius:8px;padding:13px 22px;font:600 15px Poppins,sans-serif;cursor:pointer;text-decoration:none;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.bp{background:var(--vi);color:#fff}
+.bo{background:none;border:1px solid #3D2F7A;color:var(--li)}
+.hero{padding:120px 0 70px;background:radial-gradient(120% 90% at 50% 0%,#2A1766 0%,#140D33 45%,var(--bg) 100%)}
+.kick{font-weight:700;letter-spacing:.12em;font-size:13px;color:var(--li);margin-bottom:16px}
+h1{font-size:clamp(32px,6vw,58px);line-height:1.1;font-weight:600;margin-bottom:18px}
+.lead{color:#C9C5F0;max-width:640px;margin-bottom:14px}
+.lead2{color:var(--mu);max-width:640px;margin-bottom:28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.cnts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:48px}
+.cn{background:rgba(16,16,30,.92);padding:20px 12px;text-align:center}
+.cn b{display:block;font-size:30px;font-weight:600}
+.cn span{font-size:13px;color:var(--mu)}
+.sec{padding:64px 0;border-top:1px solid var(--line)}
+.lab{font-size:12px;letter-spacing:.14em;color:var(--li);font-weight:600;margin-bottom:10px}
+h2{font-size:clamp(24px,4vw,34px);font-weight:600;margin-bottom:12px}
+.sub{color:var(--mu);max-width:660px}
+.lvl{display:grid;gap:26px;margin-top:44px}
+@media(min-width:900px){.lvl{grid-template-columns:5fr 7fr;align-items:center}.lvl.rev>:first-child{order:2}}
+.lvl h3{font-size:24px;font-weight:600;margin-bottom:10px}
+.lvl p{color:var(--mu)}
+.car{min-width:0}
+.strip{position:relative;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.slide{position:relative;flex:0 0 88%;scroll-snap-align:start;background:var(--bg2);border:1px solid var(--line);border-radius:12px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
+.slide img{width:100%;height:100%;object-fit:contain}
+.slide.vid{aspect-ratio:16/9;cursor:default}
+.slide iframe,.slide video{width:100%;height:100%;border:0}
+.play{position:absolute;inset:0;border:0;background:#0d0d1c;cursor:pointer;display:grid;place-items:center}
+.play img{position:absolute;inset:0;object-fit:cover}
+.pi{position:relative;width:56px;height:56px;border-radius:50%;border:2px solid var(--li);background:rgba(10,10,20,.6);color:var(--li);display:grid;place-items:center;font-size:18px;padding-left:3px}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;font-size:13px;color:#E8E6FF;background:linear-gradient(to top,rgba(0,0,0,.8),transparent);pointer-events:none}
+.vid .cap{top:0;bottom:auto;padding:10px 14px 22px;background:linear-gradient(to bottom,rgba(0,0,0,.7),transparent)}
+.ph{padding:16px;text-align:center;color:#5A5680;font-size:13px}
+.ph small{display:block;margin-top:6px;word-break:break-all;font-size:11px}
+.nav{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.dots{display:flex;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:#3A3660;border:0;padding:0;cursor:pointer}
+.dot.on{background:var(--li)}
+.arr{width:40px;height:40px;border-radius:50%;border:1px solid #3D2F7A;background:none;color:var(--li);cursor:pointer;font-size:20px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:28px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:20px;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-4px);border-color:#4B3AA8}
+.card small{color:var(--li);font-size:12px;letter-spacing:.1em;font-weight:600}
+.card h4{font-size:17px;font-weight:600;margin:2px 0 6px}
+.card p,.card li{color:var(--mu);font-size:14px}
+.pk ul{list-style:none;margin:12px 0 18px}
+.pk li{padding:3px 0}
+.pk li::before{content:"✓ ";color:var(--li)}
+.price{font-size:26px;font-weight:600;margin:4px 0}
+.price span{font-size:13px;color:var(--mu);font-weight:400}
+.pop{border-color:var(--vi)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{border:1px solid #3D2F7A;color:var(--li);border-radius:8px;padding:10px 16px;font:500 14px Poppins,sans-serif;background:none;cursor:pointer;text-decoration:none}
+.chip:hover,.chip.on{background:#1A0F3A}
+.form{display:grid;gap:10px;max-width:460px;margin-top:20px}
+.form input:not([type=checkbox]){width:100%;background:var(--bg2);border:1px solid #2E2E50;border-radius:8px;padding:12px 14px;color:var(--tx);font:inherit}
+.chk{display:flex;gap:10px;font-size:13px;color:var(--mu)}
+#rm{margin-top:14px;color:var(--li)}
+.about p{color:var(--mu);max-width:720px;margin-top:14px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
+.ov.open{display:flex}
+.dlg{background:#13132A;border:1px solid #3D2F7A;border-radius:16px;padding:26px;max-width:440px;width:100%}
+.dlg h3{font-size:20px;margin-bottom:10px}
+.dlg p{color:var(--mu);font-size:14px;margin-bottom:12px}
+.dlg .pr{font-size:32px;font-weight:600;color:var(--li)}
+.x{float:right;background:none;border:0;color:var(--li);font-size:26px;cursor:pointer;line-height:1}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:90;display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
+#lb[hidden]{display:none}
+#lb img{max-height:92vh;object-fit:contain}
+.waf{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:70;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font-size:14px}
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}.btn,.card{transition:none}}
+</style>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Beyond Event, accueil"><img id="lg" src="file_00000000eff881faa2d063eb0ef5ca77.png" alt="Beyond Event"></a>
+    <button class="burger" id="bg" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="panel" id="pn" aria-label="Menu principal">
+    <a href="#marketing">Marketing</a>
+    <a href="#community">Community management</a>
+    <a href="#production">Production</a>
+    <a href="#clients">Ils nous font confiance</a>
+    <a href="#offres">Offres</a>
+    <a href="#apropos">À propos</a>
+    <a href="#" data-diag>Diagnostic</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <p class="kick">AGENCE DE <strong>MARKETING</strong> · KINSHASA</p>
+    <h1>Votre marque mérite d’être vue.</h1>
+    <p class="lead">Au-delà d’un simple post, d’une simple vidéo, d’un simple événement : chaque marque a quelque chose à montrer au monde. Beyond Event, c’est ce qui fait passer du caché au visible.</p>
+    <p class="lead2">On aide les marques, les restaurants, les entreprises et les organisateurs d’événements à se faire connaître, à construire une communauté et à vendre plus.</p>
+    <div class="cta">
+      <button class="btn bp" data-diag>Diagnostic</button>
+      <a class="btn bo" href="#services">Nos services ↓</a>
+    </div>
+    <div class="cnts">
+      <div class="cn"><b data-n="10" data-p="+">10+</b><span>Vidéos réalisées</span></div>
+      <div class="cn"><b data-n="10" data-p="+">10+</b><span>Affiches réalisées</span></div>
+      <div class="cn"><b data-n="3">3</b><span>Marques accompagnées</span></div>
+      <div class="cn"><b data-n="2">2</b><span>Logos créés</span></div>
+      <div class="cn"><b data-n="4">4</b><span>Événements accompagnés</span></div>
+      <div class="cn"><b data-n="3">3</b><span>Agences accompagnées</span></div>
+      <div class="cn"><b data-n="1">1</b><span>Entreprise accompagnée</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="services">
+  <div class="wrap">
+    <p class="lab rv">CE QU’ON FAIT</p>
+    <h2 class="rv">Trois métiers, une même idée : vous rendre visible.</h2>
+    <p class="sub rv">Événements, réseaux sociaux, publicité, affichage : on choisit le canal qui atteint vos clients, puis on s’occupe du reste.</p>
+
+    <div class="lvl rv" id="marketing">
+      <div>
+        <p class="lab">NIVEAU 1</p>
+        <h3>Marketing</h3>
+        <p>On analyse votre situation, on définit le problème, on crée une stratégie claire et on choisit le bon canal (digital ou traditionnel) pour atteindre vos clients. On suit les résultats et on continue.</p>
+      </div>
+      <div class="car" id="c-marketing"></div>
+    </div>
+
+    <div class="lvl rev rv" id="community">
+      <div>
+        <p class="lab">NIVEAU 2</p>
+        <h3>Community management</h3>
+        <p>On prend en charge vos réseaux sociaux : planning de publication, création de contenu, réponses à votre communauté. On crée une vraie relation avec vos abonnés et on fait grandir votre audience.</p>
+      </div>
+      <div class="car" id="c-community"></div>
+    </div>
+
+    <div class="lvl rv" id="production">
+      <div>
+        <p class="lab">NIVEAU 3</p>
+        <h3>Production</h3>
+        <p>On filme, on monte, on photographie et on crée vos visuels : vidéos de pub, affiches, logos, cartes, certificats. Du contenu fait pour être vu, partagé et retenu.</p>
+      </div>
+      <div class="car" id="c-videos"></div>
+    </div>
+    <div class="car rv" id="c-works" style="margin-top:28px"></div>
+  </div>
+</section>
+
+<section class="sec" id="clients">
+  <div class="wrap">
+    <p class="lab rv">ILS NOUS FONT CONFIANCE</p>
+    <h2 class="rv">Ils nous ont déjà confié leurs projets.</h2>
+    <div class="grid rv">
+      <div class="card"><small>AGENCE</small><h4>DL Community</h4><p>Cartes d’accès, fiche et logo, marketing et création de contenu pour leur grand événement de formation.</p></div>
+      <div class="card"><small>AGENCE</small><h4>Congo Horizon Architecture</h4><p>Certificat de leur formation, campagne publicitaire et marketing digital de la formation.</p></div>
+      <div class="card"><small>AGENCE</small><h4>CREDO</h4><p>Confection des certificats de leur formation (Centre de ressources pour l’éducation et le développement optimisé).</p></div>
+      <div class="card"><small>ÉVÉNEMENT</small><h4>Picasso Beach</h4><p>Marketing des activités, affiches et billets.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="offres">
+  <div class="wrap">
+    <p class="lab rv">PETITES OFFRES À L’UNITÉ</p>
+    <h2 class="rv">Un seul besoin ? On s’en occupe.</h2>
+    <div class="chips rv">
+      <a class="chip" data-wa="Bonjour, je souhaite un montage vidéo.">Montage vidéo</a>
+      <a class="chip" data-wa="Bonjour, je souhaite un tournage.">Tournage seul</a>
+      <a class="chip" data-wa="Bonjour, je souhaite une affiche.">Création d’affiche</a>
+      <a class="chip" data-wa="Bonjour, je souhaite un logo.">Création de logo</a>
+      <a class="chip" data-wa="Bonjour, je souhaite un script ou un discours.">Script / discours</a>
+      <a class="chip" data-wa="Bonjour, je souhaite du marketing pour mon événement.">Marketing d’événement</a>
+    </div>
+
+    <h2 class="rv" style="margin-top:56px">Nos offres</h2>
+    <div class="grid rv">
+      <div class="card pk"><h4>Essentiel</h4><div class="price">… <span>/ mois</span></div>
+        <ul><li>8 visuels par mois</li><li>2 vidéos tournées</li><li>2 vidéos montées</li></ul>
+        <a class="btn bo" data-wa="Bonjour, je suis intéressé par l’offre Essentiel.">Nous contacter</a></div>
+      <div class="card pk pop"><small>LE PLUS CHOISI</small><h4>Visibilité</h4><div class="price">… <span>/ mois</span></div>
+        <ul><li>12 visuels par mois</li><li>4 vidéos tournées</li><li>4 vidéos montées</li></ul>
+        <a class="btn bp" data-wa="Bonjour, je suis intéressé par l’offre Visibilité.">Nous contacter</a></div>
+      <div class="card pk"><h4>Complet</h4><div class="price">… <span>/ mois</span></div>
+        <ul><li>Gestion et suivi de vos publications</li><li>16 visuels par mois</li><li>6 vidéos montées</li><li>Campagne publicitaire incluse</li><li>Rapport et point mensuel</li></ul>
+        <a class="btn bo" data-wa="Bonjour, je suis intéressé par l’offre Complet.">Nous contacter</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="ressources">
+  <div class="wrap">
+    <p class="lab rv">RESSOURCES GRATUITES</p>
+    <h2 class="rv">Recevez notre check-list.</h2>
+    <p class="sub rv">Laissez votre contact : on vous donne la check-list et on revient vers vous.</p>
+    <form class="form rv" id="rf">
+      <div class="chips" id="ck" style="margin:0 0 6px"></div>
+      <input type="text" name="nom" placeholder="Prénom et nom" required autocomplete="name">
+      <input type="tel" name="wa" placeholder="WhatsApp (+243…)" required autocomplete="tel">
+      <input type="email" name="mail" placeholder="Adresse e-mail" autocomplete="email">
+      <label class="chk"><input type="checkbox" required> J’accepte d’être contacté par Beyond Event par WhatsApp ou par e-mail.</label>
+      <button class="btn bp" type="submit">Recevoir ma check-list</button>
+    </form>
+    <p id="rm"></p>
+  </div>
+</section>
+
+<section class="sec about" id="apropos">
+  <div class="wrap">
+    <p class="lab rv">À PROPOS</p>
+    <h2 class="rv">Beyond Event, en quelques mots.</h2>
+    <p class="rv">Beyond Event est une agence de marketing basée à Kinshasa, fondée par Eric Bulembi. Nous aidons les marques, les restaurants, les entreprises et les organisateurs d’événements à se faire connaître et à vendre plus.</p>
+    <p class="rv">Côté marketing, nous analysons, nous choisissons une stratégie et nous suivons les résultats. Côté community management, nous animons vos réseaux sociaux et votre communauté. Côté production, nous filmons, nous montons et nous créons vos visuels, vos affiches, vos logos et vos certificats.</p>
+    <p class="rv">L’événementiel est l’un de nos canaux : affiches, vidéos de promotion, tournage. Nous avons déjà accompagné des agences, des entreprises et des organisateurs d’événements à Kinshasa.</p>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap">
+    <p class="lab rv">CONTACT</p>
+    <h2 class="rv">Parlons de votre projet.</h2>
+    <p class="sub rv" style="margin-bottom:22px">Une réponse rapide sur WhatsApp.</p>
+    <a class="btn bp rv" data-wa="Bonjour, je vous écris depuis votre site.">WhatsApp · +243 980 661 302</a>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© Beyond Event · Kinshasa, RDC</div></footer>
+
+<a class="waf" data-wa="Bonjour, je vous écris depuis votre site." aria-label="Écrire sur WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" fill="#0A0A14" aria-hidden="true"><path d="M4 4h16v12H9l-5 5z"/></svg></a>
+
+<div class="ov" id="dg" role="dialog" aria-modal="true" aria-labelledby="dgt">
+  <div class="dlg">
+    <button class="x" id="dx" aria-label="Fermer">×</button>
+    <h3 id="dgt">Le diagnostic</h3>
+    <p>Vous avez un business, une boutique, une marque ou un projet, mais quelque chose ne tourne pas : peu de clients, peu de visibilité, des ventes qui stagnent.</p>
+    <p>Pendant une heure, on analyse votre situation ensemble : votre activité, vos réseaux, votre communication, vos forces et vos failles. On échange, on comprend le problème, et vous repartez avec un plan clair.</p>
+    <p class="pr">20 $ <span style="font-size:14px;color:var(--mu);font-weight:400">· 1 heure</span></p>
+    <a class="btn bp" style="margin-top:8px" data-wa="Bonjour, je souhaite réserver un diagnostic (20 $, 1 heure).">Nous contacter</a>
+  </div>
+</div>
+
+<div id="lb" hidden></div>
+
+<script>
+// ===== À MODIFIER ICI =====
+const WA = "243980661302";   // numéro WhatsApp, chiffres seulement
+const FORM_URL = "";         // lien de ton Google Forms (quand il est prêt)
+const IMGS = {
+  marketing: ["Agency_20261117_122216_0000.jpg", "\u201CHelp you to grow your Business.\u201D_20261117_112445_0000.jpg", "Picsart_26-11-16_23-45-27-091.png", "Affiche modifiable_20261117_095212_0000.png"],
+  community: ["image_3ef948c3.jpg", "image_c375c57b.jpg", "image_d64e4835.jpg"],
+  works: [
+    {f: "Black and Gold Modern Completion Certificate_20261117_102712_0000.png", t: "Certificat de formation · Congo Horizon Architecture"},
+    {f: "IMG_20261117_130110_623.jpg", t: "Affiches et billets · Picasso Beach"},
+    {f: "Picsart_25-03-01_19-07-13-927.png", t: "Logo · DL Community"},
+    {f: "Red and Black Modern Stock Market Training Instagram Post_20261117_102553_0000.png", t: "Fiche de formation · DL Community"},
+    {f: "Votre texte de paragraphe_20261117_125121_0000.png", t: "Certificats de formation · CREDO"},
+    {f: "1_20261117_102315_0000.png", t: "Cartes d’accès · DL Community"}
+  ]
+};
+const VIDEOS = [
+  {id: "QSqfAzwLDSg", t: "Publicité pour une bière, tournée en restaurant"},
+  {id: "_VQHM1eEm5w", t: "Captation d’une conférence"},
+  {id: "GM6pG94y7fU", t: "Tournage d’un post publicitaire"},
+  {id: "80N8_hwori4", t: "Tournage d’une émission à l’ISAU"},
+  {id: "hfbf1Lq8Lao", t: "Portrait : l’élégance en images"},
+  {id: "vYgwEXyhLHQ", t: "Montage vidéo réalisé pour un client"}
+];
+const CHECKLISTS = [{t: "Bien filmer avec son téléphone", f: "checklist-filmer-telephone.pdf"}];
+// ===== FIN DE LA PARTIE À MODIFIER =====
+
+const $ = (s, r = document) => r.querySelector(s);
+const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
+const wa = m => "https://wa.me/" + WA + "?text=" + encodeURIComponent(m);
+
+document.querySelectorAll("[data-wa]").forEach(a => { a.href = wa(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
+
+// logo (texte de secours si le fichier est absent)
+const lg = $("#lg");
+const lgFallback = () => lg.replaceWith(Object.assign(document.createElement("span"), {textContent: "BEYOND EVENT"}));
+lg.onerror = lgFallback;
+if (lg.complete && !lg.naturalWidth) lgFallback();
+
+// menu
+const pn = $("#pn"), bg = $("#bg");
+bg.onclick = () => { const o = pn.classList.toggle("open"); bg.setAttribute("aria-expanded", o); };
+pn.querySelectorAll("a").forEach(a => a.addEventListener("click", () => { pn.classList.remove("open"); bg.setAttribute("aria-expanded", false); }));
+
+// diagnostic
+const dg = $("#dg");
+const openDiag = e => { if (e) e.preventDefault(); dg.classList.add("open"); };
+const closeDiag = () => dg.classList.remove("open");
+document.querySelectorAll("[data-diag]").forEach(b => b.addEventListener("click", openDiag));
+$("#dx").onclick = closeDiag;
+dg.addEventListener("click", e => { if (e.target === dg) closeDiag(); });
+
+// images (avec espace réservé si le fichier est absent)
+function img(f) {
+  const i = new Image(); i.alt = ""; i.loading = "lazy"; i.src = encodeURIComponent(f);
+  i.onerror = () => i.replaceWith(el("div", "ph", "Image à ajouter<small>" + f + "</small>"));
+  return i;
+}
+
+// agrandissement d'une image
+const lb = $("#lb");
+function openLb(f) { lb.replaceChildren(img(f)); lb.hidden = false; }
+lb.onclick = () => { lb.hidden = true; };
+addEventListener("keydown", e => { if (e.key === "Escape") { lb.hidden = true; closeDiag(); } });
+
+// carrousel
+function carousel(host, slides) {
+  const st = el("div", "strip"), nv = el("div", "nav"), dots = el("div", "dots");
+  const prev = el("button", "arr", "‹"), next = el("button", "arr", "›");
+  prev.setAttribute("aria-label", "Précédent"); next.setAttribute("aria-label", "Suivant");
+  const go = i => { const s = st.children[Math.max(0, Math.min(slides.length - 1, i))]; st.scrollTo({left: s.offsetLeft, behavior: "smooth"}); };
+  const cur = () => Math.round(st.scrollLeft / (st.children[0].offsetWidth + 14));
+  slides.forEach((s, i) => { st.append(s); const d = el("button", "dot" + (i ? "" : " on")); d.setAttribute("aria-label", "Élément " + (i + 1)); d.onclick = () => go(i); dots.append(d); });
+  st.addEventListener("scroll", () => { const c = cur(); [...dots.children].forEach((d, i) => d.classList.toggle("on", i === c)); }, {passive: true});
+  prev.onclick = () => go(cur() - 1); next.onclick = () => go(cur() + 1);
+  nv.append(prev, dots, next); host.append(st, nv);
+}
+const photo = (f, t) => { const s = el("div", "slide"); s.append(img(f)); if (t) s.append(el("div", "cap", t)); s.addEventListener("click", () => openLb(f)); return s; };
+
+function video(v) {
+  const s = el("div", "slide vid"), cap = el("div", "cap", v.t);
+  function yt() {
+    const b = el("button", "play"); b.setAttribute("aria-label", "Lire : " + v.t);
+    const i = new Image(); i.alt = ""; i.loading = "lazy"; i.src = "https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg"; i.onerror = () => i.remove();
+    b.append(i, el("span", "pi", "▶"));
+    b.onclick = () => { const f = el("iframe"); f.src = "https://www.youtube-nocookie.com/embed/" + v.id + "?autoplay=1&rel=0&playsinline=1"; f.title = v.t; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true; s.replaceChildren(f, cap); };
+    return b;
+  }
+  if (v.fichier) {
+    const m = document.createElement("video"); m.controls = true; m.playsInline = true; m.preload = "metadata"; m.src = v.fichier + "#t=0.5";
+    if (v.id) m.onerror = () => s.replaceChildren(yt(), cap);
+    s.append(m, cap);
+  } else s.append(yt(), cap);
+  return s;
+}
+
+carousel($("#c-marketing"), IMGS.marketing.map(f => photo(f)));
+carousel($("#c-community"), IMGS.community.map(f => photo(f)));
+carousel($("#c-videos"), VIDEOS.map(video));
+carousel($("#c-works"), IMGS.works.map(w => photo(w.f, w.t)));
+
+// check-list et formulaire
+let ckSel = 0;
+const ck = $("#ck");
+CHECKLISTS.forEach((c, i) => { const b = el("button", "chip" + (i ? "" : " on"), c.t); b.type = "button"; b.onclick = () => { ckSel = i; [...ck.children].forEach((x, j) => x.classList.toggle("on", j === i)); }; ck.append(b); });
+$("#rf").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, c = CHECKLISTS[ckSel];
+  const msg = "Bonjour, je souhaite recevoir la check-list « " + c.t + " ».\nNom : " + f.nom.value + "\nWhatsApp : " + f.wa.value + "\nE-mail : " + f.mail.value;
+  $("#rm").innerHTML = "Merci ! Voici votre check-list : <a href=\"" + c.f + "\" target=\"_blank\" rel=\"noopener\"><u>télécharger</u></a>";
+  window.open(FORM_URL || wa(msg), "_blank");
+});
+
+// compteurs et apparition au défilement
+const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll(".cn b").forEach(b => {
+  if (calm) return;
+  const n = +b.dataset.n, p = b.dataset.p || "";
+  b.textContent = "0" + p;
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return; io.disconnect();
+    let t = 0; const go = () => { t += 1 / 40; b.textContent = Math.round(n * Math.min(t, 1)) + p; if (t < 1) requestAnimationFrame(go); }; go();
+  }, {threshold: .5});
+  io.observe(b);
+});
+const rio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); rio.unobserve(e.target); } }), {threshold: .1});
+document.querySelectorAll(".rv").forEach(x => rio.observe(x));
+</script>
+</body>
+</html>

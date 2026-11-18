@@ -3,7 +3,7 @@
   COMMENT MODIFIER CE SITE (tout se passe dans la partie <script>, tout en bas) :
   - IMGS : les listes d'images. Ajoute ou retire un nom de fichier (le fichier doit être dans le dépôt GitHub, à côté de index.html).
   - VIDEOS : ajoute une ligne {id:"ID_YOUTUBE", t:"Titre"} ; pour une vidéo hébergée sur le site : fichier:"nom.mp4".
-  - WA : ton numéro WhatsApp. FORM_URL : le lien de ton Google Forms (quand il est prêt).
+  - WA : ton numéro WhatsApp. FORM_ENDPOINT : l’adresse du service qui t’envoie les formulaires par e-mail.
   - CHECKLISTS : les checklists offertes (titre + nom du PDF).
 -->
 <html lang="fr">
@@ -21,67 +21,73 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0A0A14;--bg2:#10101E;--line:#1F1F36;--tx:#E8E6FF;--mu:#9A96BC;--vi:#6B52FF;--li:#A796FF;color-scheme:dark;box-sizing:border-box}
+:root{--bg:#F4F1FF;--bg2:#E7E2FF;--line:#CFC7F5;--tx:#1A1035;--mu:#463F7D;--vi:#6B52FF;--li:#4B38B8;--lead:#3C3489;--bd:#9B87FF;--hov:#DCD5FF;--hdr:rgba(244,241,255,.93);--dlg:#EEEAFF;--ov:rgba(60,50,120,.5);--bpbg:#B9ACFF;--bptx:#1A1035;--ph:#6A63A0;--dot:#B9B0E8;--hero:radial-gradient(120% 90% at 50% 0%,#D5CCFF 0%,#E9E5FF 45%,#F4F1FF 100%);--cn:#EEEAFF;--capc:#1A1035;--capg:rgba(244,241,255,.94);color-scheme:light;box-sizing:border-box}
+[data-theme=dark]{--bg:#0A0A14;--bg2:#10101E;--line:#1F1F36;--tx:#E8E6FF;--mu:#9A96BC;--li:#A796FF;--lead:#C9C5F0;--bd:#3D2F7A;--hov:#1A0F3A;--hdr:rgba(10,10,20,.9);--dlg:#13132A;--ov:rgba(0,0,0,.72);--bpbg:#6B52FF;--bptx:#fff;--ph:#5A5680;--dot:#3A3660;--hero:radial-gradient(120% 90% at 50% 0%,#2A1766 0%,#140D33 45%,#0A0A14 100%);--cn:rgba(16,16,30,.92);--capc:#E8E6FF;--capg:rgba(0,0,0,.8);color-scheme:dark}
 *,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:76px;background:var(--bg)}
 body{background:var(--bg);color:var(--tx);font:400 16px/1.6 Poppins,system-ui,sans-serif;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0px)}
 img{max-width:100%;display:block}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--li);outline-offset:3px}
+:focus-visible{outline:3px solid var(--vi);outline-offset:3px}
 .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,20,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--hdr);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 .bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.rt{display:flex;align-items:center;gap:8px}
+.tgl{background:none;border:1px solid var(--bd);color:var(--li);border-radius:999px;padding:7px 14px;font:500 13px Poppins,sans-serif;cursor:pointer}
 .logo{display:flex;align-items:center;text-decoration:none;font-weight:600;letter-spacing:.06em}
 .logo img{height:34px;width:auto}
 .burger{background:none;border:0;color:var(--tx);cursor:pointer;padding:10px;display:grid;gap:5px}
 .burger span{display:block;width:24px;height:2px;background:currentColor}
 .panel{display:none;background:var(--bg2);border-top:1px solid var(--line)}
 .panel.open{display:block}
-.panel a{display:block;padding:14px 20px;text-decoration:none;border-bottom:1px solid var(--line);color:#C9C5F0;max-width:1100px;margin:0 auto}
-.btn{display:inline-block;border:0;border-radius:8px;padding:13px 22px;font:600 15px Poppins,sans-serif;cursor:pointer;text-decoration:none;transition:transform .2s,background .2s}
+.panel a{display:block;padding:14px 20px;text-decoration:none;border-bottom:1px solid var(--line);color:var(--lead);max-width:1100px;margin:0 auto}
+.btn{display:inline-block;border:1px solid transparent;border-radius:8px;padding:13px 22px;font:600 15px Poppins,sans-serif;cursor:pointer;text-decoration:none;transition:transform .2s,background .2s}
 .btn:hover{transform:translateY(-2px)}
-.bp{background:var(--vi);color:#fff}
-.bo{background:none;border:1px solid #3D2F7A;color:var(--li)}
-.hero{padding:120px 0 70px;background:radial-gradient(120% 90% at 50% 0%,#2A1766 0%,#140D33 45%,var(--bg) 100%)}
+.bp{background:var(--bpbg);color:var(--bptx);border-color:var(--vi)}
+.bo{background:none;border-color:var(--bd);color:var(--li)}
+.hero{padding:120px 0 70px;background:var(--hero)}
 .kick{font-weight:700;letter-spacing:.12em;font-size:13px;color:var(--li);margin-bottom:16px}
 h1{font-size:clamp(32px,6vw,58px);line-height:1.1;font-weight:600;margin-bottom:18px}
-.lead{color:#C9C5F0;max-width:640px;margin-bottom:14px}
+.lead{color:var(--lead);max-width:640px;margin-bottom:14px}
 .lead2{color:var(--mu);max-width:640px;margin-bottom:28px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
-.cnts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:48px}
-.cn{background:rgba(16,16,30,.92);padding:20px 12px;text-align:center}
+.cnts{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow-x:auto;scrollbar-width:none;margin-top:48px}
+.cnts::-webkit-scrollbar{display:none}
+.cn{flex:0 0 150px;background:var(--cn);padding:20px 12px;text-align:center}
+@media(min-width:900px){.cn{flex:1 0 0}}
 .cn b{display:block;font-size:30px;font-weight:600}
 .cn span{font-size:13px;color:var(--mu)}
 .sec{padding:64px 0;border-top:1px solid var(--line)}
 .lab{font-size:12px;letter-spacing:.14em;color:var(--li);font-weight:600;margin-bottom:10px}
 h2{font-size:clamp(24px,4vw,34px);font-weight:600;margin-bottom:12px}
 .sub{color:var(--mu);max-width:660px}
-.lvl{display:grid;gap:26px;margin-top:44px}
-@media(min-width:900px){.lvl{grid-template-columns:5fr 7fr;align-items:center}.lvl.rev>:first-child{order:2}}
+.lvl{margin-top:48px}
+.lvl>div:first-child{max-width:720px;margin-bottom:22px}
 .lvl h3{font-size:24px;font-weight:600;margin-bottom:10px}
 .lvl p{color:var(--mu)}
 .car{min-width:0}
 .strip{position:relative;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 .strip::-webkit-scrollbar{display:none}
 .slide{position:relative;flex:0 0 88%;scroll-snap-align:start;background:var(--bg2);border:1px solid var(--line);border-radius:12px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
+@media(min-width:900px){.slide{flex-basis:calc((100% - 28px)/3)}.slide.vid{flex-basis:calc((100% - 14px)/2)}}
 .slide img{width:100%;height:100%;object-fit:contain}
 .slide.vid{aspect-ratio:16/9;cursor:default}
 .slide iframe,.slide video{width:100%;height:100%;border:0}
-.play{position:absolute;inset:0;border:0;background:#0d0d1c;cursor:pointer;display:grid;place-items:center}
+.play{position:absolute;inset:0;border:0;background:var(--bg2);cursor:pointer;display:grid;place-items:center}
 .play img{position:absolute;inset:0;object-fit:cover}
-.pi{position:relative;width:56px;height:56px;border-radius:50%;border:2px solid var(--li);background:rgba(10,10,20,.6);color:var(--li);display:grid;place-items:center;font-size:18px;padding-left:3px}
-.cap{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;font-size:13px;color:#E8E6FF;background:linear-gradient(to top,rgba(0,0,0,.8),transparent);pointer-events:none}
-.vid .cap{top:0;bottom:auto;padding:10px 14px 22px;background:linear-gradient(to bottom,rgba(0,0,0,.7),transparent)}
-.ph{padding:16px;text-align:center;color:#5A5680;font-size:13px}
+.pi{position:relative;width:56px;height:56px;border-radius:50%;border:2px solid var(--li);background:var(--hdr);color:var(--li);display:grid;place-items:center;font-size:18px;padding-left:3px}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;font-size:13px;font-weight:500;color:var(--capc);background:linear-gradient(to top,var(--capg),transparent);pointer-events:none}
+.vid .cap{top:0;bottom:auto;padding:10px 14px 22px;background:linear-gradient(to bottom,var(--capg),transparent)}
+.ph{padding:16px;text-align:center;color:var(--ph);font-size:13px}
 .ph small{display:block;margin-top:6px;word-break:break-all;font-size:11px}
 .nav{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
 .dots{display:flex;gap:8px}
-.dot{width:8px;height:8px;border-radius:50%;background:#3A3660;border:0;padding:0;cursor:pointer}
-.dot.on{background:var(--li)}
-.arr{width:40px;height:40px;border-radius:50%;border:1px solid #3D2F7A;background:none;color:var(--li);cursor:pointer;font-size:20px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--dot);border:0;padding:0;cursor:pointer}
+.dot.on{background:var(--vi)}
+.arr{width:40px;height:40px;border-radius:50%;border:1px solid var(--bd);background:none;color:var(--li);cursor:pointer;font-size:20px}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:28px}
 .card{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:20px;transition:transform .25s,border-color .25s}
-.card:hover{transform:translateY(-4px);border-color:#4B3AA8}
+.card:hover{transform:translateY(-4px);border-color:var(--bd)}
 .card small{color:var(--li);font-size:12px;letter-spacing:.1em;font-weight:600}
 .card h4{font-size:17px;font-weight:600;margin:2px 0 6px}
 .card p,.card li{color:var(--mu);font-size:14px}
@@ -92,16 +98,16 @@ h2{font-size:clamp(24px,4vw,34px);font-weight:600;margin-bottom:12px}
 .price span{font-size:13px;color:var(--mu);font-weight:400}
 .pop{border-color:var(--vi)}
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.chip{border:1px solid #3D2F7A;color:var(--li);border-radius:8px;padding:10px 16px;font:500 14px Poppins,sans-serif;background:none;cursor:pointer;text-decoration:none}
-.chip:hover,.chip.on{background:#1A0F3A}
+.chip{border:1px solid var(--bd);color:var(--li);border-radius:8px;padding:10px 16px;font:500 14px Poppins,sans-serif;background:none;cursor:pointer;text-decoration:none}
+.chip:hover,.chip.on{background:var(--hov)}
 .form{display:grid;gap:10px;max-width:460px;margin-top:20px}
-.form input:not([type=checkbox]){width:100%;background:var(--bg2);border:1px solid #2E2E50;border-radius:8px;padding:12px 14px;color:var(--tx);font:inherit}
+.form input:not([type=checkbox]){width:100%;background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:12px 14px;color:var(--tx);font:inherit}
 .chk{display:flex;gap:10px;font-size:13px;color:var(--mu)}
-#rm{margin-top:14px;color:var(--li)}
+#rm{margin-top:14px;color:var(--li);font-weight:500}
 .about p{color:var(--mu);max-width:720px;margin-top:14px}
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
+.ov{position:fixed;inset:0;background:var(--ov);z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
 .ov.open{display:flex}
-.dlg{background:#13132A;border:1px solid #3D2F7A;border-radius:16px;padding:26px;max-width:440px;width:100%}
+.dlg{background:var(--dlg);border:1px solid var(--bd);border-radius:16px;padding:26px;max-width:440px;width:100%}
 .dlg h3{font-size:20px;margin-bottom:10px}
 .dlg p{color:var(--mu);font-size:14px;margin-bottom:12px}
 .dlg .pr{font-size:32px;font-weight:600;color:var(--li)}
@@ -109,20 +115,22 @@ h2{font-size:clamp(24px,4vw,34px);font-weight:600;margin-bottom:12px}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:90;display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
 #lb[hidden]{display:none}
 #lb img{max-height:92vh;object-fit:contain}
-.waf{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:70;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.waf{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:70;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.35)}
 footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font-size:14px}
 .js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
 .js .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}.btn,.card{transition:none}}
 </style>
-<script>document.documentElement.classList.add("js")</script>
+<script>document.documentElement.classList.add("js");try{document.documentElement.dataset.theme=localStorage.getItem("theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K904N7PB95"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-K904N7PB95");</script>
 </head>
 <body>
 
 <header>
   <div class="wrap bar">
     <a class="logo" href="#top" aria-label="Beyond Event, accueil"><img id="lg" src="file_00000000eff881faa2d063eb0ef5ca77.png" alt="Beyond Event"></a>
-    <button class="burger" id="bg" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="rt"><button class="tgl" id="tg" type="button"></button><button class="burger" id="bg" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
   </div>
   <nav class="panel" id="pn" aria-label="Menu principal">
     <a href="#marketing">Marketing</a>
@@ -167,16 +175,16 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
 
     <div class="lvl rv" id="marketing">
       <div>
-        <p class="lab">NIVEAU 1</p>
+        
         <h3>Marketing</h3>
         <p>On analyse votre situation, on définit le problème, on crée une stratégie claire et on choisit le bon canal (digital ou traditionnel) pour atteindre vos clients. On suit les résultats et on continue.</p>
       </div>
       <div class="car" id="c-marketing"></div>
     </div>
 
-    <div class="lvl rev rv" id="community">
+    <div class="lvl rv" id="community">
       <div>
-        <p class="lab">NIVEAU 2</p>
+        
         <h3>Community management</h3>
         <p>On prend en charge vos réseaux sociaux : planning de publication, création de contenu, réponses à votre communauté. On crée une vraie relation avec vos abonnés et on fait grandir votre audience.</p>
       </div>
@@ -185,7 +193,7 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
 
     <div class="lvl rv" id="production">
       <div>
-        <p class="lab">NIVEAU 3</p>
+        
         <h3>Production</h3>
         <p>On filme, on monte, on photographie et on crée vos visuels : vidéos de pub, affiches, logos, cartes, certificats. Du contenu fait pour être vu, partagé et retenu.</p>
       </div>
@@ -275,7 +283,7 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
 
 <footer><div class="wrap">© Beyond Event · Kinshasa, RDC</div></footer>
 
-<a class="waf" data-wa="Bonjour, je vous écris depuis votre site." aria-label="Écrire sur WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" fill="#0A0A14" aria-hidden="true"><path d="M4 4h16v12H9l-5 5z"/></svg></a>
+<a class="waf" data-wa="Bonjour, je vous écris depuis votre site." aria-label="Écrire sur WhatsApp"><svg viewBox="0 0 24 24" width="32" height="32" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 
 <div class="ov" id="dg" role="dialog" aria-modal="true" aria-labelledby="dgt">
   <div class="dlg">
@@ -293,7 +301,7 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
 <script>
 // ===== À MODIFIER ICI =====
 const WA = "243980661302";   // numéro WhatsApp, chiffres seulement
-const FORM_URL = "";         // lien de ton Google Forms (quand il est prêt)
+const FORM_ENDPOINT = "";    // ex. https://formsubmit.co/ajax/ton-adresse@gmail.com (reçoit les formulaires par e-mail)
 const IMGS = {
   marketing: ["Agency_20261117_122216_0000.jpg", "\u201CHelp you to grow your Business.\u201D_20261117_112445_0000.jpg", "Picsart_26-11-16_23-45-27-091.png", "Affiche modifiable_20261117_095212_0000.png"],
   community: ["image_3ef948c3.jpg", "image_c375c57b.jpg", "image_d64e4835.jpg"],
@@ -328,6 +336,12 @@ const lg = $("#lg");
 const lgFallback = () => lg.replaceWith(Object.assign(document.createElement("span"), {textContent: "BEYOND EVENT"}));
 lg.onerror = lgFallback;
 if (lg.complete && !lg.naturalWidth) lgFallback();
+
+// thème clair / sombre
+const tg = $("#tg");
+function setTheme(t) { document.documentElement.dataset.theme = t; tg.textContent = t === "dark" ? "Mode clair" : "Mode sombre"; try { localStorage.setItem("theme", t); } catch (e) {} }
+setTheme(document.documentElement.dataset.theme || "light");
+tg.onclick = () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
 
 // menu
 const pn = $("#pn"), bg = $("#bg");
@@ -395,12 +409,19 @@ carousel($("#c-works"), IMGS.works.map(w => photo(w.f, w.t)));
 let ckSel = 0;
 const ck = $("#ck");
 CHECKLISTS.forEach((c, i) => { const b = el("button", "chip" + (i ? "" : " on"), c.t); b.type = "button"; b.onclick = () => { ckSel = i; [...ck.children].forEach((x, j) => x.classList.toggle("on", j === i)); }; ck.append(b); });
-$("#rf").addEventListener("submit", e => {
+$("#rf").addEventListener("submit", async e => {
   e.preventDefault();
-  const f = e.target, c = CHECKLISTS[ckSel];
-  const msg = "Bonjour, je souhaite recevoir la check-list « " + c.t + " ».\nNom : " + f.nom.value + "\nWhatsApp : " + f.wa.value + "\nE-mail : " + f.mail.value;
-  $("#rm").innerHTML = "Merci ! Voici votre check-list : <a href=\"" + c.f + "\" target=\"_blank\" rel=\"noopener\"><u>télécharger</u></a>";
-  window.open(FORM_URL || wa(msg), "_blank");
+  const f = e.target, c = CHECKLISTS[ckSel], rm = $("#rm"), btn = f.querySelector("button[type=submit]");
+  const data = {nom: f.nom.value, whatsapp: f.wa.value, email: f.mail.value, checklist: c.t, _subject: "Nouvelle demande de check-list – Beyond Event"};
+  const done = () => { rm.innerHTML = "Merci ! Voici votre check-list : <a href=\"" + c.f + "\" target=\"_blank\" rel=\"noopener\"><u>télécharger</u></a>"; f.reset(); };
+  if (!FORM_ENDPOINT) { done(); return; }
+  btn.disabled = true; rm.textContent = "Envoi en cours…";
+  try {
+    const r = await fetch(FORM_ENDPOINT, {method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"}, body: JSON.stringify(data)});
+    if (!r.ok) throw new Error("envoi");
+    done();
+  } catch (err) { rm.textContent = "L’envoi a échoué. Écrivez-nous sur WhatsApp, on vous répond vite."; }
+  btn.disabled = false;
 });
 
 // compteurs et apparition au défilement

@@ -30,17 +30,15 @@ img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--vi);outline-offset:3px}
 .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-header{position:fixed;top:0;left:0;right:0;z-index:50;background:#0A0A14 !important;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:#0A0A14;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 .bar{display:flex;align-items:center;justify-content:space-between;height:64px}
-header .burger{color:#E8E6FF !important}
-header .burger span{background:#E8E6FF !important}
-[data-theme=dark] header .tgl{background:#1A1A2E !important;color:#E8E6FF !important}
+header .burger{color:#E8E6FF}
 .rt{display:flex;align-items:center;gap:8px}
-.tgl{background:#F3ECDD !important;color:#2B2A33 !important;border:0;border-radius:999px;padding:7px 14px;font:500 13px Poppins,sans-serif;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.tgl{background:var(--tgbg);color:var(--tgtx);border:0;border-radius:999px;padding:7px 14px;font:500 13px Poppins,sans-serif;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.2)}
 .logo{display:flex;align-items:center;text-decoration:none;font-weight:600;letter-spacing:.06em}
 .logo img{height:34px;width:auto}
 .burger{background:none;border:0;color:var(--tx);cursor:pointer;padding:10px;display:grid;gap:5px}
-.burger span{display:block;width:24px;height:2px;background:#E8E6FF}
+.burger span{display:block;width:24px;height:2px;background:currentColor}
 .panel{display:none;position:absolute;top:70px;right:16px;width:260px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);overflow:hidden}
 .panel.open{display:block}
 .panel a{display:block;padding:12px 18px;text-decoration:none;border-bottom:1px solid var(--line);color:var(--lead);font-size:14px}
@@ -144,6 +142,11 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
 .js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
 .js .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}.btn,.card{transition:none}}
+header{background:#0A0A14 !important}
+header .tgl{background:#F3ECDD !important;color:#2B2A33 !important;border:0 !important;opacity:1 !important;visibility:visible !important;display:inline-block !important}
+[data-theme=dark] header .tgl{background:#1A1A2E !important;color:#E8E6FF !important}
+header .burger{display:grid !important;color:#E8E6FF !important;opacity:1 !important;visibility:visible !important}
+header .burger span{display:block !important;background:#E8E6FF !important;height:2px;width:24px}
 </style>
 <script>document.documentElement.classList.add("js");try{document.documentElement.dataset.theme=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme="light"}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K904N7PB95"></script>
@@ -352,6 +355,7 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
 <script>
 // ===== À MODIFIER ICI =====
 const WA = "243980661302";   // numéro WhatsApp, chiffres seulement
+const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBV9DUXro2e6kfMOlBofvwAWh178OkvmjoSXD3-F2FOgRQSGbBTFF5MYGdm9sbdRY-tg/exec";    // ex. https://formsubmit.co/ajax/ton-adresse@gmail.com (reçoit les formulaires par e-mail)
 const IMGS = {
   marketing: ["Agency_20261117_122216_0000.jpg", "\u201CHelp you to grow your Business.\u201D_20261117_112445_0000.jpg", "Picsart_26-11-16_23-45-27-091.png", "Affiche modifiable_20261117_095212_0000.png"],
   community: ["image_53de4f16.jpg", "image_62d6dd00-1.jpg", "image_3ef948c3.jpg", "image_c375c57b.jpg", "image_d64e4835.jpg"],
@@ -388,13 +392,13 @@ const CHECKLISTS = [
 const PAYS = [["+243","RDC (+243)"],["+242","Congo-Brazzaville"],["+244","Angola"],["+250","Rwanda"],["+257","Burundi"],["+255","Tanzanie"],["+256","Ouganda"],["+254","Kenya"],["+251","Éthiopie"],["+249","Soudan"],["+234","Nigeria"],["+233","Ghana"],["+225","Côte d’Ivoire"],["+221","Sénégal"],["+223","Mali"],["+226","Burkina Faso"],["+227","Niger"],["+228","Togo"],["+229","Bénin"],["+237","Cameroun"],["+235","Tchad"],["+236","Centrafrique"],["+241","Gabon"],["+240","Guinée équatoriale"],["+238","Cap-Vert"],["+220","Gambie"],["+224","Guinée"],["+245","Guinée-Bissau"],["+231","Liberia"],["+232","Sierra Leone"],["+212","Maroc"],["+213","Algérie"],["+216","Tunisie"],["+218","Libye"],["+20","Égypte"],["+27","Afrique du Sud"],["+260","Zambie"],["+263","Zimbabwe"],["+258","Mozambique"],["+261","Madagascar"],["+265","Malawi"],["+267","Botswana"],["+264","Namibie"],["+266","Lesotho"],["+268","Eswatini"],["+269","Comores"],["+248","Seychelles"],["+230","Maurice"],["+262","Réunion / Mayotte"],["+257","Burundi"],["+33","France"],["+32","Belgique"],["+41","Suisse"],["+49","Allemagne"],["+44","Royaume-Uni"],["+39","Italie"],["+34","Espagne"],["+351","Portugal"],["+31","Pays-Bas"],["+352","Luxembourg"],["+353","Irlande"],["+46","Suède"],["+47","Norvège"],["+45","Danemark"],["+358","Finlande"],["+48","Pologne"],["+30","Grèce"],["+90","Turquie"],["+971","Émirats arabes unis"],["+966","Arabie saoudite"],["+974","Qatar"],["+965","Koweït"],["+962","Jordanie"],["+961","Liban"],["+972","Israël"],["+98","Iran"],["+91","Inde"],["+92","Pakistan"],["+880","Bangladesh"],["+86","Chine"],["+81","Japon"],["+82","Corée du Sud"],["+66","Thaïlande"],["+84","Viêt Nam"],["+62","Indonésie"],["+60","Malaisie"],["+65","Singapour"],["+63","Philippines"],["+61","Australie"],["+64","Nouvelle-Zélande"],["+1","États-Unis / Canada"],["+52","Mexique"],["+55","Brésil"],["+54","Argentine"],["+57","Colombie"],["+56","Chili"],["+51","Pérou"],["+58","Venezuela"],["+593","Équateur"],["+502","Guatemala"],["+509","Haïti"],["+590","Guadeloupe / Martinique"],["+7","Russie / Kazakhstan"],["+380","Ukraine"]];
 const $ = (s, r = document) => r.querySelector(s);
 const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
-const wa = m => "https://wa.me/" + WA + "?text=" + encodeURIComponent(m);
 const MAIL = "beyondevent3@gmail.com";
 const mailto = d => {
   const subj = d._subject || "Demande – Beyond Event";
   const body = Object.keys(d).filter(k => k !== "_subject").map(k => k + " : " + d[k]).join("\n");
   location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(body);
 };
+const wa = m => "https://wa.me/" + WA + "?text=" + encodeURIComponent(m);
 
 document.querySelectorAll("[data-wa]").forEach(a => { a.href = wa(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
 
@@ -468,7 +472,15 @@ $("#pf").addEventListener("submit", async e => {
     type: st.type, categorie: st.cat, precision: st.sub,
     nom: f.nom.value, email: f.mail.value, whatsapp: ind2.value + " " + f.wa.value, message: f.msg.value
   };
-  mailto(data); pm.className = ""; pm.textContent = "Votre e-mail s’ouvre : il suffit de l’envoyer depuis votre application."; f.reset(); stepOne();
+  mailto(data); pm.className = ""; pm.textContent = "Votre e-mail s’ouvre : il suffit de l’envoyer depuis votre application."; f.reset(); return;
+  btn.disabled = true; pm.className = ""; pm.textContent = "Envoi en cours…";
+  try {
+    const r = await fetch(FORM_ENDPOINT, {method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"}, body: JSON.stringify(data)});
+    if (!r.ok) throw new Error("envoi");
+    pm.className = ""; pm.textContent = "Merci ! Votre demande est bien reçue. Nous revenons vers vous rapidement.";
+    f.reset(); stepOne();
+  } catch (err) { pm.className = "msg-err"; pm.textContent = "L’envoi a échoué. Réessayez, ou écrivez-nous sur WhatsApp."; }
+  btn.disabled = false;
 });
 
 // logo (texte de secours si le fichier est absent)
@@ -557,7 +569,14 @@ $("#rf").addEventListener("submit", async e => {
   rm.className = "";
   const data = {nom: f.nom.value, whatsapp: ind.value + " " + f.wa.value, email: f.mail.value, checklist: c.t, _subject: "Nouvelle demande de check-list – Beyond Event"};
   const done = () => { const a = document.createElement("a"); a.href = c.f; a.download = c.f; document.body.append(a); a.click(); a.remove(); rm.textContent = "Merci ! Votre check-list se télécharge."; f.reset(); };
-  mailto(data); done();
+  mailto(data); done(); return;
+  btn.disabled = true; rm.textContent = "Envoi en cours…";
+  try {
+    const r = await fetch(FORM_ENDPOINT, {method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"}, body: JSON.stringify(data)});
+    if (!r.ok) throw new Error("envoi");
+    done();
+  } catch (err) { rm.textContent = "L’envoi a échoué. Écrivez-nous sur WhatsApp, on vous répond vite."; }
+  btn.disabled = false;
 });
 
 // compteurs et apparition au défilement

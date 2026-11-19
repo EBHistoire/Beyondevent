@@ -21,8 +21,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F4F1FF;--bg2:#E7E2FF;--line:#CFC7F5;--tx:#1A1035;--mu:#463F7D;--vi:#6B52FF;--li:#4B38B8;--lead:#3C3489;--bd:#9B87FF;--hov:#DCD5FF;--hdr:rgba(244,241,255,.93);--dlg:#EEEAFF;--ov:rgba(60,50,120,.5);--bpbg:#B9ACFF;--bptx:#1A1035;--ph:#6A63A0;--dot:#B9B0E8;--hero:radial-gradient(120% 90% at 50% 0%,#D5CCFF 0%,#E9E5FF 45%,#F4F1FF 100%);--cn:#EEEAFF;--capc:#1A1035;--capg:rgba(244,241,255,.94);color-scheme:light;box-sizing:border-box}
-[data-theme=dark]{--bg:#0A0A14;--bg2:#10101E;--line:#1F1F36;--tx:#E8E6FF;--mu:#9A96BC;--li:#A796FF;--lead:#C9C5F0;--bd:#3D2F7A;--hov:#1A0F3A;--hdr:rgba(10,10,20,.9);--dlg:#13132A;--ov:rgba(0,0,0,.72);--bpbg:#6B52FF;--bptx:#fff;--ph:#5A5680;--dot:#3A3660;--hero:radial-gradient(120% 90% at 50% 0%,#2A1766 0%,#140D33 45%,#0A0A14 100%);--cn:rgba(16,16,30,.92);--capc:#E8E6FF;--capg:rgba(0,0,0,.8);color-scheme:dark}
+:root{--tgbg:#F3ECDD;--tgtx:#2B2A33;--bg:#F3ECDD;--bg2:#FAF6EC;--line:#D9D2C1;--tx:#2B2A33;--mu:#5C5A66;--vi:#2F6FB5;--li:#2F6FB5;--lead:#3A3A44;--bd:#B9B09A;--hov:#EAE1CC;--hdr:#0A0A14;--dlg:#FAF6EC;--ov:rgba(43,42,51,.45);--bpbg:#E8833A;--bptx:#1A1A22;--ph:#7A766C;--dot:#CFC6B0;--hero:linear-gradient(180deg,#F3ECDD 0%,#E9E0CB 100%);--cn:#FAF6EC;--capc:#1A1A22;--capg:rgba(250,246,236,.95);--sw:#E8833A;color-scheme:light;box-sizing:border-box}
+[data-theme=dark]{--tgbg:#0A0A14;--tgtx:#E8E6FF;--bg:#0A0A14;--bg2:#10101E;--line:#1F1F36;--tx:#E8E6FF;--mu:#9A96BC;--li:#A796FF;--lead:#C9C5F0;--bd:#3D2F7A;--hov:#1A0F3A;--hdr:rgba(10,10,20,.9);--dlg:#13132A;--ov:rgba(0,0,0,.72);--bpbg:#6B52FF;--bptx:#fff;--ph:#5A5680;--dot:#3A3660;--hero:radial-gradient(120% 90% at 50% 0%,#2A1766 0%,#140D33 45%,#0A0A14 100%);--cn:rgba(16,16,30,.92);--capc:#E8E6FF;--capg:rgba(0,0,0,.8);color-scheme:dark}
 *,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:76px;background:var(--bg)}
 body{background:var(--bg);color:var(--tx);font:400 16px/1.6 Poppins,system-ui,sans-serif;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -30,21 +30,23 @@ img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--vi);outline-offset:3px}
 .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-header{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--hdr);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:#0A0A14;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 .bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+header .burger{color:#E8E6FF}
 .rt{display:flex;align-items:center;gap:8px}
-.tgl{background:none;border:1px solid var(--bd);color:var(--li);border-radius:999px;padding:7px 14px;font:500 13px Poppins,sans-serif;cursor:pointer}
+.tgl{background:var(--tgbg);color:var(--tgtx);border:0;border-radius:999px;padding:7px 14px;font:500 13px Poppins,sans-serif;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.2)}
 .logo{display:flex;align-items:center;text-decoration:none;font-weight:600;letter-spacing:.06em}
 .logo img{height:34px;width:auto}
 .burger{background:none;border:0;color:var(--tx);cursor:pointer;padding:10px;display:grid;gap:5px}
 .burger span{display:block;width:24px;height:2px;background:currentColor}
-.panel{display:none;background:var(--bg2);border-top:1px solid var(--line)}
+.panel{display:none;position:absolute;top:70px;right:16px;width:260px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);overflow:hidden}
 .panel.open{display:block}
-.panel a{display:block;padding:14px 20px;text-decoration:none;border-bottom:1px solid var(--line);color:var(--lead);max-width:1100px;margin:0 auto}
-.btn{display:inline-block;border:1px solid transparent;border-radius:8px;padding:13px 22px;font:600 15px Poppins,sans-serif;cursor:pointer;text-decoration:none;transition:transform .2s,background .2s}
+.panel a{display:block;padding:12px 18px;text-decoration:none;border-bottom:1px solid var(--line);color:var(--lead);font-size:14px}
+.panel a:last-child{border-bottom:0}
+.btn{display:inline-block;border:0;box-shadow:0 3px 0 rgba(0,0,0,.18);border-radius:8px;padding:13px 22px;font:600 15px Poppins,sans-serif;cursor:pointer;text-decoration:none;transition:transform .2s,background .2s}
 .btn:hover{transform:translateY(-2px)}
-.bp{background:var(--bpbg);color:var(--bptx);border-color:var(--vi)}
-.bo{background:none;border-color:var(--bd);color:var(--li)}
+.bp{background:#E8833A;color:#1A1A22}
+.bo{background:#2F6FB5;color:#FFFFFF}
 .hero{padding:120px 0 70px;background:var(--hero)}
 .kick{font-weight:700;letter-spacing:.12em;font-size:13px;color:var(--li);margin-bottom:16px}
 h1{font-size:clamp(32px,6vw,58px);line-height:1.1;font-weight:600;margin-bottom:18px}
@@ -68,10 +70,10 @@ h2{font-size:clamp(24px,4vw,34px);font-weight:600;margin-bottom:12px}
 .car{min-width:0}
 .strip{position:relative;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 .strip::-webkit-scrollbar{display:none}
-.slide{position:relative;flex:0 0 88%;scroll-snap-align:start;background:var(--bg2);border:1px solid var(--line);border-radius:12px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
+.slide{position:relative;flex:0 0 88%;scroll-snap-align:start;background:var(--bg2);border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in;min-height:160px}
 @media(min-width:900px){.slide{flex-basis:calc((100% - 28px)/3)}.slide.vid{flex-basis:calc((100% - 14px)/2)}}
-.slide img{width:100%;height:100%;object-fit:contain}
-.slide.vid{aspect-ratio:16/9;cursor:default}
+.slide img{width:100%;height:auto;max-height:520px;object-fit:contain}
+.slide.vid{aspect-ratio:16/9;min-height:0;cursor:default}
 .slide iframe,.slide video{width:100%;height:100%;border:0}
 .play{position:absolute;inset:0;border:0;background:var(--bg2);cursor:pointer;display:grid;place-items:center}
 .play img{position:absolute;inset:0;object-fit:cover}
@@ -84,7 +86,7 @@ h2{font-size:clamp(24px,4vw,34px);font-weight:600;margin-bottom:12px}
 .dots{display:flex;gap:8px}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--dot);border:0;padding:0;cursor:pointer}
 .dot.on{background:var(--vi)}
-.arr{width:40px;height:40px;border-radius:50%;border:1px solid var(--bd);background:none;color:var(--li);cursor:pointer;font-size:20px}
+.arr{width:40px;height:40px;border-radius:50%;border:0;background:var(--bg2);color:var(--li);cursor:pointer;font-size:20px;box-shadow:0 2px 0 rgba(0,0,0,.12)}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:28px}
 .card{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:20px;transition:transform .25s,border-color .25s}
 .card:hover{transform:translateY(-4px);border-color:var(--bd)}
@@ -96,11 +98,22 @@ h2{font-size:clamp(24px,4vw,34px);font-weight:600;margin-bottom:12px}
 .pk li::before{content:"✓ ";color:var(--li)}
 .price{font-size:26px;font-weight:600;margin:4px 0}
 .price span{font-size:13px;color:var(--mu);font-weight:400}
-.pop{border-color:var(--vi)}
+.pop{border-color:var(--line)}
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.chip{border:1px solid var(--bd);color:var(--li);border-radius:8px;padding:10px 16px;font:500 14px Poppins,sans-serif;background:none;cursor:pointer;text-decoration:none}
+.chip{border:0;background:var(--bg2);color:var(--li);box-shadow:0 2px 0 rgba(0,0,0,.12);border-radius:8px;padding:10px 16px;font:500 14px Poppins,sans-serif;background:none;cursor:pointer;text-decoration:none}
 .chip:hover,.chip.on{background:var(--hov)}
 .form{display:grid;gap:10px;max-width:460px;margin-top:20px}
+.sel{width:100%;background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:12px 14px;color:var(--tx);font:inherit}
+.tel{display:flex;align-items:stretch;background:var(--bg2);border:1px solid var(--bd);border-radius:8px;overflow:hidden}
+.tel select{flex:0 0 auto;border:0;border-right:1px solid var(--line);background:transparent;padding:12px 10px;color:var(--li);font:600 15px Poppins,sans-serif;cursor:pointer}
+.tel input.num{flex:1;min-width:0;border:0!important;background:transparent;padding:12px 14px;color:var(--tx);font:inherit;outline:none}
+.tel:focus-within{outline:3px solid var(--li);outline-offset:2px}
+.msg-err{color:#C0392B;font-size:13px;margin-top:-4px}
+.sel,.tel select{background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:12px 10px;color:var(--tx);font:inherit}
+.soc{margin-top:22px}
+.soc-t{font-size:13px;letter-spacing:.1em;color:var(--mu);margin-bottom:10px;text-transform:uppercase}
+.soc-b{display:flex;gap:12px;flex-wrap:wrap}
+.soc-btn{background:#2F6FB5;color:#FFFFFF}
 .form input:not([type=checkbox]){width:100%;background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:12px 14px;color:var(--tx);font:inherit}
 .chk{display:flex;gap:10px;font-size:13px;color:var(--mu)}
 #rm{margin-top:14px;color:var(--li);font-weight:500}
@@ -121,7 +134,7 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
 .js .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}.btn,.card{transition:none}}
 </style>
-<script>document.documentElement.classList.add("js");try{document.documentElement.dataset.theme=localStorage.getItem("theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+<script>document.documentElement.classList.add("js");try{document.documentElement.dataset.theme=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme="light"}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K904N7PB95"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-K904N7PB95");</script>
 </head>
@@ -129,7 +142,7 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
 
 <header>
   <div class="wrap bar">
-    <a class="logo" href="#top" aria-label="Beyond Event, accueil"><img id="lg" src="file_00000000eff881faa2d063eb0ef5ca77.png" alt="Beyond Event"></a>
+    <a class="logo" href="#top" aria-label="Beyond Event, accueil"><img id="lg" src="file_00000000eff881faa2d063eb0ef5ca77.png" alt="Beyond Event" draggable="false"></a>
     <div class="rt"><button class="tgl" id="tg" type="button"></button><button class="burger" id="bg" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
   </div>
   <nav class="panel" id="pn" aria-label="Menu principal">
@@ -250,12 +263,12 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
     <h2 class="rv">Recevez notre check-list.</h2>
     <p class="sub rv">Laissez votre contact : on vous donne la check-list et on revient vers vous.</p>
     <form class="form rv" id="rf">
-      <div class="chips" id="ck" style="margin:0 0 6px"></div>
+      <div id="ck"></div>
       <input type="text" name="nom" placeholder="Prénom et nom" required autocomplete="name">
-      <input type="tel" name="wa" placeholder="WhatsApp (+243…)" required autocomplete="tel">
+      <div class="tel"><select id="ind" aria-label="Indicatif du pays"></select><input class="num" type="tel" name="wa" placeholder="Numéro WhatsApp" required autocomplete="tel" inputmode="numeric"></div>
       <input type="email" name="mail" placeholder="Adresse e-mail" autocomplete="email">
       <label class="chk"><input type="checkbox" required> J’accepte d’être contacté par Beyond Event par WhatsApp ou par e-mail.</label>
-      <button class="btn bp" type="submit">Recevoir ma check-list</button>
+      <button class="btn bp" type="submit">Télécharger la check-list</button>
     </form>
     <p id="rm"></p>
   </div>
@@ -277,6 +290,13 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
     <h2 class="rv">Parlons de votre projet.</h2>
     <p class="sub rv" style="margin-bottom:22px">Une réponse rapide sur WhatsApp.</p>
     <a class="btn bp rv" data-wa="Bonjour, je vous écris depuis votre site.">WhatsApp · +243 980 661 302</a>
+    <div class="soc rv">
+      <p class="soc-t">Nous suivre</p>
+      <div class="soc-b">
+        <a class="btn soc-btn" href="https://www.tiktok.com/@beyondevent.1" target="_blank" rel="noopener">Nous suivre sur TikTok</a>
+        <a class="btn soc-btn" href="https://www.instagram.com/inesmorel12" target="_blank" rel="noopener">Nous suivre sur Instagram</a>
+      </div>
+    </div>
   </div>
 </section>
 </main>
@@ -301,10 +321,10 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
 <script>
 // ===== À MODIFIER ICI =====
 const WA = "243980661302";   // numéro WhatsApp, chiffres seulement
-const FORM_ENDPOINT = "";    // ex. https://formsubmit.co/ajax/ton-adresse@gmail.com (reçoit les formulaires par e-mail)
+const FORM_ENDPOINT = "https://formsubmit.co/el/rubami";    // ex. https://formsubmit.co/ajax/ton-adresse@gmail.com (reçoit les formulaires par e-mail)
 const IMGS = {
   marketing: ["Agency_20261117_122216_0000.jpg", "\u201CHelp you to grow your Business.\u201D_20261117_112445_0000.jpg", "Picsart_26-11-16_23-45-27-091.png", "Affiche modifiable_20261117_095212_0000.png"],
-  community: ["image_3ef948c3.jpg", "image_c375c57b.jpg", "image_d64e4835.jpg"],
+  community: ["image_3ef948c3.jpg", "image_c375c57b.jpg", "image_d64e4835.jpg", "image_53de4f16.jpg", "image_62d6dd00-1.jpg"],
   works: [
     {f: "Black and Gold Modern Completion Certificate_20261117_102712_0000.png", t: "Certificat de formation · Congo Horizon Architecture"},
     {f: "IMG_20261117_130110_623.jpg", t: "Affiches et billets · Picasso Beach"},
@@ -322,15 +342,37 @@ const VIDEOS = [
   {id: "hfbf1Lq8Lao", t: "Portrait : l’élégance en images"},
   {id: "vYgwEXyhLHQ", t: "Montage vidéo réalisé pour un client"}
 ];
-const CHECKLISTS = [{t: "Bien filmer avec son téléphone", f: "checklist-filmer-telephone.pdf"}];
+const CHECKLISTS = [
+  {t: "Bien filmer avec son téléphone", f: "checklist-filmer-telephone.pdf"},
+  {t: "Publier efficacement sur les réseaux", f: "checklist-publier-efficacement.pdf"},
+  {t: "Lancer une campagne publicitaire", f: "checklist-campagne-pub.pdf"},
+  {t: "Préparer un événement qui attire du monde", f: "checklist-evenement.pdf"},
+  {t: "Réussir la photo de son produit", f: "checklist-photo-produit.pdf"},
+  {t: "Préparer son discours ou sa présentation", f: "checklist-discours.pdf"},
+  {t: "Créer une affiche qui se remarque", f: "checklist-affiche.pdf"},
+  {t: "Monter une vidéo avec l’IA", f: "checklist-montage-ia.pdf"}
+];
+// Chaque fichier doit être téléversé sur GitHub, à côté de index.html, avec exactement ce nom.
 // ===== FIN DE LA PARTIE À MODIFIER =====
 
+const PAYS = [["+243","RDC (+243)"],["+242","Congo-Brazzaville"],["+244","Angola"],["+250","Rwanda"],["+257","Burundi"],["+255","Tanzanie"],["+256","Ouganda"],["+254","Kenya"],["+251","Éthiopie"],["+249","Soudan"],["+234","Nigeria"],["+233","Ghana"],["+225","Côte d’Ivoire"],["+221","Sénégal"],["+223","Mali"],["+226","Burkina Faso"],["+227","Niger"],["+228","Togo"],["+229","Bénin"],["+237","Cameroun"],["+235","Tchad"],["+236","Centrafrique"],["+241","Gabon"],["+240","Guinée équatoriale"],["+238","Cap-Vert"],["+220","Gambie"],["+224","Guinée"],["+245","Guinée-Bissau"],["+231","Liberia"],["+232","Sierra Leone"],["+212","Maroc"],["+213","Algérie"],["+216","Tunisie"],["+218","Libye"],["+20","Égypte"],["+27","Afrique du Sud"],["+260","Zambie"],["+263","Zimbabwe"],["+258","Mozambique"],["+261","Madagascar"],["+265","Malawi"],["+267","Botswana"],["+264","Namibie"],["+266","Lesotho"],["+268","Eswatini"],["+269","Comores"],["+248","Seychelles"],["+230","Maurice"],["+262","Réunion / Mayotte"],["+257","Burundi"],["+33","France"],["+32","Belgique"],["+41","Suisse"],["+49","Allemagne"],["+44","Royaume-Uni"],["+39","Italie"],["+34","Espagne"],["+351","Portugal"],["+31","Pays-Bas"],["+352","Luxembourg"],["+353","Irlande"],["+46","Suède"],["+47","Norvège"],["+45","Danemark"],["+358","Finlande"],["+48","Pologne"],["+30","Grèce"],["+90","Turquie"],["+971","Émirats arabes unis"],["+966","Arabie saoudite"],["+974","Qatar"],["+965","Koweït"],["+962","Jordanie"],["+961","Liban"],["+972","Israël"],["+98","Iran"],["+91","Inde"],["+92","Pakistan"],["+880","Bangladesh"],["+86","Chine"],["+81","Japon"],["+82","Corée du Sud"],["+66","Thaïlande"],["+84","Viêt Nam"],["+62","Indonésie"],["+60","Malaisie"],["+65","Singapour"],["+63","Philippines"],["+61","Australie"],["+64","Nouvelle-Zélande"],["+1","États-Unis / Canada"],["+52","Mexique"],["+55","Brésil"],["+54","Argentine"],["+57","Colombie"],["+56","Chili"],["+51","Pérou"],["+58","Venezuela"],["+593","Équateur"],["+502","Guatemala"],["+509","Haïti"],["+590","Guadeloupe / Martinique"],["+7","Russie / Kazakhstan"],["+380","Ukraine"]];
 const $ = (s, r = document) => r.querySelector(s);
 const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
 const wa = m => "https://wa.me/" + WA + "?text=" + encodeURIComponent(m);
 
 document.querySelectorAll("[data-wa]").forEach(a => { a.href = wa(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
 
+document.addEventListener("contextmenu", e => { if (e.target.closest && e.target.closest("img,video,.slide")) e.preventDefault(); });
+document.addEventListener("dragstart", e => { if (e.target.tagName === "IMG") e.preventDefault(); });
+const ind = document.getElementById("ind");
+PAYS.forEach(([c]) => ind.append(new Option(c, c)));
+ind.value = "+243";
+const LEN = {"+243": 9, "+242": 9, "+244": 9, "+250": 9, "+257": 8, "+255": 9, "+256": 9, "+254": 9, "+251": 9, "+33": 9, "+32": 9, "+41": 9, "+221": 9, "+237": 9, "+225": 10, "+1": 10, "+234": 10, "+27": 9, "+44": 10, "+49": 11, "+91": 10, "+86": 11};
+const wNum = document.querySelector('input[name="wa"]');
+const lenOf = () => LEN[ind.value] || 9;
+const digitsOnly = v => v.replace(/\D/g, "");
+wNum.addEventListener("input", () => { wNum.value = digitsOnly(wNum.value).slice(0, lenOf()); });
+ind.addEventListener("change", () => { wNum.value = digitsOnly(wNum.value).slice(0, lenOf()); });
 // logo (texte de secours si le fichier est absent)
 const lg = $("#lg");
 const lgFallback = () => lg.replaceWith(Object.assign(document.createElement("span"), {textContent: "BEYOND EVENT"}));
@@ -408,12 +450,15 @@ carousel($("#c-works"), IMGS.works.map(w => photo(w.f, w.t)));
 // check-list et formulaire
 let ckSel = 0;
 const ck = $("#ck");
-CHECKLISTS.forEach((c, i) => { const b = el("button", "chip" + (i ? "" : " on"), c.t); b.type = "button"; b.onclick = () => { ckSel = i; [...ck.children].forEach((x, j) => x.classList.toggle("on", j === i)); }; ck.append(b); });
+const sel = el("select", "sel"); sel.name = "checklist"; sel.required = true; CHECKLISTS.forEach((c, i) => sel.append(new Option(c.t, i))); sel.onchange = () => { ckSel = +sel.value; }; ck.replaceWith(sel); sel.id = "ck";
 $("#rf").addEventListener("submit", async e => {
   e.preventDefault();
   const f = e.target, c = CHECKLISTS[ckSel], rm = $("#rm"), btn = f.querySelector("button[type=submit]");
-  const data = {nom: f.nom.value, whatsapp: f.wa.value, email: f.mail.value, checklist: c.t, _subject: "Nouvelle demande de check-list – Beyond Event"};
-  const done = () => { rm.innerHTML = "Merci ! Voici votre check-list : <a href=\"" + c.f + "\" target=\"_blank\" rel=\"noopener\"><u>télécharger</u></a>"; f.reset(); };
+  const n = digitsOnly(f.wa.value);
+  if (n.length !== lenOf()) { rm.className = "msg-err"; rm.textContent = "Le numéro doit contenir " + lenOf() + " chiffres après l’indicatif " + ind.value + "."; wNum.focus(); return; }
+  rm.className = "";
+  const data = {nom: f.nom.value, whatsapp: ind.value + " " + f.wa.value, email: f.mail.value, checklist: c.t, _subject: "Nouvelle demande de check-list – Beyond Event"};
+  const done = () => { const a = document.createElement("a"); a.href = c.f; a.download = c.f; document.body.append(a); a.click(); a.remove(); rm.textContent = "Merci ! Votre check-list se télécharge."; f.reset(); };
   if (!FORM_ENDPOINT) { done(); return; }
   btn.disabled = true; rm.textContent = "Envoi en cours…";
   try {

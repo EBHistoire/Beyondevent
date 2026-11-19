@@ -124,6 +124,15 @@ h2{font-size:clamp(24px,4vw,34px);font-weight:600;margin-bottom:12px}
 .dlg h3{font-size:20px;margin-bottom:10px}
 .dlg p{color:var(--mu);font-size:14px;margin-bottom:12px}
 .dlg .pr{font-size:32px;font-weight:600;color:var(--li)}
+.dlg-w{max-height:88vh;overflow-y:auto;position:relative}
+.back{background:none;border:0;color:var(--li);font:500 14px Poppins,sans-serif;cursor:pointer;padding:0 0 10px}
+.stp{display:grid;gap:8px}
+.stp[hidden]{display:none}
+.opt{display:block;width:100%;text-align:left;background:var(--bg2);color:var(--tx);border:0;border-radius:10px;padding:13px 16px;font:500 15px Poppins,sans-serif;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.opt:hover{background:var(--hov)}
+.opt.bl{background:#2F6FB5;color:#FFFFFF}
+.opt.or{background:#E8833A;color:#1A1A22}
+.stp p.q{color:var(--mu);font-size:14px;margin-bottom:6px}
 .x{float:right;background:none;border:0;color:var(--li);font-size:26px;cursor:pointer;line-height:1}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:90;display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
 #lb[hidden]{display:none}
@@ -153,6 +162,7 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
     <a href="#offres">Offres</a>
     <a href="#apropos">À propos</a>
     <a href="#" data-diag>Diagnostic</a>
+    <a href="#" data-part>Devenir partenaire</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -294,7 +304,7 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
       <p class="soc-t">Nous suivre</p>
       <div class="soc-b">
         <a class="btn soc-btn" href="https://www.tiktok.com/@beyondevent.1" target="_blank" rel="noopener">Nous suivre sur TikTok</a>
-        <a class="btn soc-btn" href="https://www.instagram.com/inesmorel12" target="_blank" rel="noopener">Nous suivre sur Instagram</a>
+        <a class="btn soc-btn" href="https://www.instagram.com/beyondevent3" target="_blank" rel="noopener">Nous suivre sur Instagram</a>
       </div>
     </div>
   </div>
@@ -316,6 +326,25 @@ footer{padding:36px 0 90px;border-top:1px solid var(--line);color:var(--mu);font
   </div>
 </div>
 
+<div class="ov" id="pr" role="dialog" aria-modal="true" aria-labelledby="prt">
+  <div class="dlg dlg-w">
+    <button class="x" id="prx" aria-label="Fermer">×</button>
+    <button class="back" id="prb" type="button" hidden>‹ Retour</button>
+    <h3 id="prt">Devenir partenaire</h3>
+    <div id="pr1" class="stp"></div>
+    <div id="pr2" class="stp" hidden></div>
+    <div id="pr3" class="stp" hidden></div>
+    <form id="pf" class="stp" hidden>
+      <input type="text" name="nom" placeholder="Nom de la structure ou prénom et nom" required>
+      <input type="email" name="mail" placeholder="Adresse e-mail" required>
+      <div class="tel"><select id="ind2" aria-label="Indicatif du pays"></select><input class="num" type="tel" name="wa" placeholder="Numéro WhatsApp" required inputmode="numeric"></div>
+      <textarea class="sel" name="msg" rows="3" placeholder="Un mot sur votre projet (facultatif)"></textarea>
+      <button class="btn bp" type="submit">Envoyer ma demande</button>
+      <p id="pm"></p>
+    </form>
+  </div>
+</div>
+
 <div id="lb" hidden></div>
 
 <script>
@@ -324,7 +353,7 @@ const WA = "243980661302";   // numéro WhatsApp, chiffres seulement
 const FORM_ENDPOINT = "https://formsubmit.co/el/rubami";    // ex. https://formsubmit.co/ajax/ton-adresse@gmail.com (reçoit les formulaires par e-mail)
 const IMGS = {
   marketing: ["Agency_20261117_122216_0000.jpg", "\u201CHelp you to grow your Business.\u201D_20261117_112445_0000.jpg", "Picsart_26-11-16_23-45-27-091.png", "Affiche modifiable_20261117_095212_0000.png"],
-  community: ["image_3ef948c3.jpg", "image_c375c57b.jpg", "image_d64e4835.jpg", "image_53de4f16.jpg", "image_62d6dd00-1.jpg"],
+  community: ["image_53de4f16.jpg", "image_62d6dd00-1.jpg", "image_3ef948c3.jpg", "image_c375c57b.jpg", "image_d64e4835.jpg"],
   works: [
     {f: "Black and Gold Modern Completion Certificate_20261117_102712_0000.png", t: "Certificat de formation · Congo Horizon Architecture"},
     {f: "IMG_20261117_130110_623.jpg", t: "Affiches et billets · Picasso Beach"},
@@ -373,6 +402,76 @@ const lenOf = () => LEN[ind.value] || 9;
 const digitsOnly = v => v.replace(/\D/g, "");
 wNum.addEventListener("input", () => { wNum.value = digitsOnly(wNum.value).slice(0, lenOf()); });
 ind.addEventListener("change", () => { wNum.value = digitsOnly(wNum.value).slice(0, lenOf()); });
+
+
+
+// ===== DEVENIR PARTENAIRE : fenêtre en étapes =====
+const PART = {
+  "Partenariat": {
+    "Lieux et espaces": ["Salle de location", "Espace événementiel", "Espace de coworking", "Hôtel ou lodge", "Autre espace"],
+    "Restauration": ["Restaurant", "Bar ou lounge", "Fast-food ou snack", "Traiteur", "Autre"],
+    "Agences et services": ["Agence de communication", "Agence événementielle", "Agence de voyage", "Cabinet ou bureau d’études", "Autre"],
+    "Entreprises et commerces": ["Boutique ou commerce", "Marque de produits", "Entreprise de services", "Start-up", "Autre"],
+    "Formation et éducation": ["Centre de formation", "École ou université", "Organisme de certification", "Autre"]
+  },
+  "Collaboration": {
+    "Créateurs de contenu": ["Vidéaste", "Photographe", "Influenceur", "Musicien ou artiste", "Designer", "Autre"],
+    "Marques": ["Boissons ou alimentation", "Mode ou beauté", "Technologie", "Santé et bien-être", "Immobilier ou construction", "Autre"],
+    "Événements": ["Conférence", "Concert ou spectacle", "Festival", "Formation", "Mariage ou fête", "Autre"]
+  }
+};
+const pr = document.getElementById("pr"), prb = document.getElementById("prb");
+const steps = [document.getElementById("pr1"), document.getElementById("pr2"), document.getElementById("pr3"), document.getElementById("pf")];
+let st = {type: "", cat: "", sub: ""}, cur = 0;
+const show = i => { steps.forEach((x, j) => x.hidden = j !== i); cur = i; prb.hidden = i === 0; };
+const btns = (items, cls, onPick) => items.map(t => { const b = document.createElement("button"); b.type = "button"; b.className = "opt" + (cls ? " " + cls : ""); b.textContent = t; b.onclick = () => onPick(t); return b; });
+function stepOne() {
+  steps[0].replaceChildren(); steps[0].append(Object.assign(document.createElement("p"), {className: "q", textContent: "Vous voulez :"}));
+  steps[0].append(...btns(Object.keys(PART), "", t => { st.type = t; stepTwo(); }));
+  show(0);
+}
+function stepTwo() {
+  const cats = Object.keys(PART[st.type]);
+  steps[1].replaceChildren(); steps[1].append(Object.assign(document.createElement("p"), {className: "q", textContent: "Votre activité :"}));
+  steps[1].append(...btns(cats, "", t => { st.cat = t; stepThree(); }));
+  show(1);
+}
+function stepThree() {
+  const list = PART[st.type][st.cat];
+  steps[2].replaceChildren(); steps[2].append(Object.assign(document.createElement("p"), {className: "q", textContent: "Précisez :"}));
+  steps[2].append(...btns(list, "", t => { st.sub = t; show(3); }));
+  show(2);
+}
+prb.onclick = () => { if (cur === 3) show(2); else if (cur === 2) show(1); else if (cur === 1) show(0); };
+document.querySelectorAll("[data-part]").forEach(a => a.addEventListener("click", e => { e.preventDefault(); pn.classList.remove("open"); bg.setAttribute("aria-expanded", false); st = {type: "", cat: "", sub: ""}; stepOne(); pr.classList.add("open"); }));
+document.getElementById("prx").onclick = () => pr.classList.remove("open");
+pr.addEventListener("click", e => { if (e.target === pr) pr.classList.remove("open"); });
+const ind2 = document.getElementById("ind2");
+PAYS.forEach(([c]) => ind2.append(new Option(c, c)));
+ind2.value = "+243";
+const pfw = document.querySelector('#pf input[name="wa"]');
+pfw.addEventListener("input", () => { pfw.value = digitsOnly(pfw.value).slice(0, LEN[ind2.value] || 9); });
+ind2.addEventListener("change", () => { pfw.value = digitsOnly(pfw.value).slice(0, LEN[ind2.value] || 9); });
+$("#pf").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, pm = $("#pm"), btn = f.querySelector("button[type=submit]");
+  if (digitsOnly(f.wa.value).length !== (LEN[ind2.value] || 9)) { pm.className = "msg-err"; pm.textContent = "Le numéro doit contenir " + (LEN[ind2.value] || 9) + " chiffres après l’indicatif " + ind2.value + "."; return; }
+  const data = {
+    _subject: "Demande : " + st.type + " – " + st.sub,
+    type: st.type, categorie: st.cat, precision: st.sub,
+    nom: f.nom.value, email: f.mail.value, whatsapp: ind2.value + " " + f.wa.value, message: f.msg.value
+  };
+  if (!FORM_ENDPOINT) { pm.className = ""; pm.textContent = "Merci ! Votre demande est envoyée."; f.reset(); return; }
+  btn.disabled = true; pm.className = ""; pm.textContent = "Envoi en cours…";
+  try {
+    const r = await fetch(FORM_ENDPOINT, {method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"}, body: JSON.stringify(data)});
+    if (!r.ok) throw new Error("envoi");
+    pm.className = ""; pm.textContent = "Merci ! Votre demande est bien reçue. Nous revenons vers vous rapidement.";
+    f.reset(); stepOne();
+  } catch (err) { pm.className = "msg-err"; pm.textContent = "L’envoi a échoué. Réessayez, ou écrivez-nous sur WhatsApp."; }
+  btn.disabled = false;
+});
+
 // logo (texte de secours si le fichier est absent)
 const lg = $("#lg");
 const lgFallback = () => lg.replaceWith(Object.assign(document.createElement("span"), {textContent: "BEYOND EVENT"}));
